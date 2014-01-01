@@ -17,6 +17,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+#### Вспомогательные функции для работы со строками
 if typeof String.prototype.endsWith != 'function'
     String.prototype.endsWith = ( str ) ->
         return this.substring( this.length - str.length, this.length ) == str
@@ -40,10 +41,11 @@ unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ""
 module.exports = class amountInWords
     constructor: (@amount) ->
 
+    @degree = 0
+    @amountInWords = ""
+
     singleToText: (string, isFemale) ->
-        # console.log 111
         return "undefinded" unless /^[0-9]$/.test string
-        # console.log 222
         digit = string - 0
         isFemale ?= false
     
@@ -62,7 +64,6 @@ module.exports = class amountInWords
         if isFemale
             wordByIndex[1] = "одна"
             wordByIndex[2] = "две"
-        # console.log 333 + " digit="+digit
         return wordByIndex[digit]
 
         
@@ -103,7 +104,6 @@ module.exports = class amountInWords
         ]
         
         return wordByIndex[leftDigit - 2] if rightDigit == "0"
-        console.log "rightDigit="+rightDigit+" len="+rightDigit.length
         return wordByIndex[leftDigit - 2] + " " + @singleToText rightDigit, isFemale
 
     tripleToText: ( string ) ->
@@ -129,56 +129,58 @@ module.exports = class amountInWords
         return wordByIndex[leftDigit-1] if rightCouple == "00"
         return wordByIndex[leftDigit-1] + " " + @coupleToText rightCouple
 
-    degreeText: (  string,  degree) ->
+    degreeText: ( string ) ->
 
-        return "" if  degree < 1 or degree > 4
+        return "" if  @degree < 1 or @degree > 4
 
-        if degree == 1
+        if @degree == 1
             return " тысяча" if string.endsWith "одна"
             return " тысячи" if string.endsWith("две") || string.endsWith("три") || string.endsWith("четыре")
             return " тысяч"
 
-        if degree == 2
+        if @degree == 2
             return " миллион" if string.endsWith "один"
             return " миллиона" if string.endsWith("два") || string.endsWith("три") || string.endsWith("четыре")
             return " миллионов"
 
-        if degree == 3
+        if @degree == 3
             return " миллиард" if string.endsWith "один"
             return " миллиарда" if string.endsWith("два") || string.endsWith("три") || string.endsWith("четыре")
             return " миллиардов"
 
-        if degree == 4
+        if @degree == 4
             return " триллион" if string.endsWith "один"
             return " триллиона" if string.endsWith("два") || string.endsWith("три") || string.endsWith("четыре")
             return " триллионов"
 
     toText:  ->
         string = @amount + ""
-        degree = 0
-        result = ""
-        while string.length >= 3
-            if !string.endsWith "000"
-                # console.log  'string.right(3)='+string.right(3)
-                tripleText = @tripleToText string.right(3)
-                result = tripleText + @degreeText( tripleText, degree ) + " "+ result
-            
-            string = string.left( string.length - 3)
-            degree++
+        @degree = 0
+        @amountInWords = ""
 
+        # отрезаем по три цифры с конца и делаем их преобразование
+        while string.length >= 3 
+            string = @parseLast3 string
+
+        # обрабатываем оставшееся после отрезания
         if string.length > 0
             if string.length == 2
-                coupleSingleText = @coupleToText string, degree == 1
+                coupleSingleText = @coupleToText string, @degree == 1
             else
-                # console.log "degree="+degree+ " string = "+string
-                coupleSingleText = @singleToText string, degree == 1
+                coupleSingleText = @singleToText string, @degree == 1
             
-            degreeText = @degreeText( coupleSingleText, degree )
-            if result != "" && (coupleSingleText + degreeText) != ""
-                result =  coupleSingleText + degreeText + " " + result
+            degreeText = @degreeText coupleSingleText
+            if @amountInWords != "" && (coupleSingleText + degreeText) != ""
+                @amountInWords =  coupleSingleText + degreeText + " " + @amountInWords
             else
-                result =  coupleSingleText + degreeText + result
+                @amountInWords =  coupleSingleText + degreeText + @amountInWords
 
-        result.trim()
+        @amountInWords.trim()
 
 
+    parseLast3: (string) ->
+        if !string.endsWith "000"
+            tripleText = @tripleToText string.right 3
+            @amountInWords = tripleText + @degreeText( tripleText ) + " "+ @amountInWords 
+        @degree++
+        string.left( string.length - 3);
