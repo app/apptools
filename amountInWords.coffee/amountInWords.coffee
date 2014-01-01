@@ -1,18 +1,20 @@
 # Класс для преобразования числа в пропись 
-# При разработке использовались исходники Ananas application library
-#
-# Copyright (C) 2012 Andrey Paskal.
-#
-# This file is part of the Designer application of the Ananas 
-# automation accounting system.
-#
-# This file may be distributed and/or modified under the terms of the
-# GNU General Public License version 2 as published by the Free Software
-# Foundation and appearing in the file LICENSE.GPL included in the
-# packaging of this file.
-#
-# This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-# WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+# This file is part of apptools.
+# Copyright (C) 2012-2014 Andrey Paskal.
+
+# apptools is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the
+# Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# apptools is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 if typeof String.prototype.endsWith != 'function'
