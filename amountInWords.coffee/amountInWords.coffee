@@ -31,6 +31,9 @@ if typeof String.prototype.left != 'function'
         return this if subLen >= this.length
         return this.substring( 0, subLen )
 
+unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ""
+
+
 #### Класс для хранения значения, преобразуемого в текст 
 module.exports = class amountInWords
     constructor: (@amount) ->
@@ -108,7 +111,7 @@ module.exports = class amountInWords
         rightCouple = string.substring(1,3)
 
         if string - 0 < 100
-            return coupleToText rightCouple
+            return @coupleToText rightCouple
 
         wordByIndex = [
             "сто"
@@ -174,7 +177,6 @@ module.exports = class amountInWords
             else
                 result =  coupleSingleText + degreeText + result
 
-
-        result
+        result.trim()
 
 
