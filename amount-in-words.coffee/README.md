@@ -3,24 +3,24 @@ AmountInWords
 
 CoffeeScript класс AmountInWords преобразует целое положительное число 
 в пропись.  
-Пример: "999035" будет преобразовано в "девятсот девяносто девять тысяч тридцать пять"
+Пример: "999035" будет преобразовано в "девятьсот девяносто девять тысяч тридцать пять"  
 
 
 ### Установка
 	# Перейдите во временную пустую папку  
 	# Получите код  
 	git clone https://github.com/app/apptools.git  
-	cd apptools/amountInWords.coffee  
+	# Установите зависимости  
+	cd apptools/amount-in-words.coffee/  
 	npm install  
-	# Скопируйте папку amountInWords.coffee в свой проект  
-	# 
+	# Скопируйте папку node_modules/ и файл AmountInWords.coffee в свой проект  
+	cp -r node_modules/ AmountInWords.coffee <PATH-TO-YOU-PROJECT/>  
 
 
-# Для запуска тестов в среде bash операционной системы Linux 
-# выполните команды
+### Запуск тестов
  
 	git clone https://github.com/app/apptools.git  
-	cd apptools/amountInWords.coffee  
+	cd apptools/amount-in-words.coffee/  
 	npm install  
 	make test 
 
@@ -33,6 +33,6 @@ CoffeeScript класс AmountInWords преобразует целое поло
 	total = new AmountInWords "999035"  
 	console.log total.toText()  
 	# выведет на экран  
-	девятсот девяносто девять тысяч тридцать пять  
+	девятьсот девяносто девять тысяч тридцать пять  
 
 Удачи!
