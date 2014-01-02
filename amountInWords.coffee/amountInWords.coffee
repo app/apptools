@@ -67,6 +67,7 @@ module.exports = class amountInWords
         return wordByIndex[digit]
 
         
+    # Заменяем число из двух цифр словами
     coupleToText: ( string, isFemale ) ->
     
         return "undefinded" unless /^[0-9][0-9]$/.test string
@@ -106,6 +107,7 @@ module.exports = class amountInWords
         return wordByIndex[leftDigit - 2] if rightDigit == "0"
         return wordByIndex[leftDigit - 2] + " " + @singleToText rightDigit, isFemale
 
+    # Заменяем число из трех цифр словами
     tripleToText: ( string ) ->
         return "undefinded" unless /^[0-9][0-9][0-9]$/.test string
 
