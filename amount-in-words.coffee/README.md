@@ -9,13 +9,10 @@ CoffeeScript класс AmountInWords преобразует целое поло
 
 ### Установка
 	# Перейдите во временную пустую папку  
-	# Получите код  
+	# Получите код apptools  
 	git clone https://github.com/app/apptools.git  
-	# Установите зависимости  
-	cd apptools/amount-in-words.coffee/  
-	npm install  
-	# Скопируйте папку node_modules/ и файл AmountInWords.coffee в свой проект  
-	cp -r node_modules/ AmountInWords.coffee <PATH-TO-YOU-PROJECT/>  
+	# Скопируйте файл AmountInWords.coffee в свой проект  
+	cp -r apptools/amount-in-words.coffee/AmountInWords.coffee <PATH-TO-YOU-PROJECT/>  
 
 
 ### Пример использования
