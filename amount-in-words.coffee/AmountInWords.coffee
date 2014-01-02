@@ -50,7 +50,7 @@ module.exports = class AmountInWords
         isFemale ?= false
     
         wordByIndex = [
-            ""
+            "ноль"
             "один"
             "два"
             "три"
