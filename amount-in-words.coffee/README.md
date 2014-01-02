@@ -4,6 +4,7 @@ AmountInWords
 CoffeeScript класс AmountInWords преобразует целое положительное число 
 в пропись.  
 Пример: "999035" будет преобразовано в "девятьсот девяносто девять тысяч тридцать пять"  
+Диапазон поддерживаемых чисел - от 0 (ноль) до 999999999999999 (девятьсот девяносто девять триллионов девятьсот девяносто девять миллиардов девятьсот девяносто девять миллионов девятьсот девяносто девять тысяч девятьсот девяносто девять)  
 
 
 ### Установка
@@ -17,14 +18,6 @@ CoffeeScript класс AmountInWords преобразует целое поло
 	cp -r node_modules/ AmountInWords.coffee <PATH-TO-YOU-PROJECT/>  
 
 
-### Запуск тестов
- 
-	git clone https://github.com/app/apptools.git  
-	cd apptools/amount-in-words.coffee/  
-	npm install  
-	make test 
-
-
 ### Пример использования
 	# В начале файла поместите  
 	AmountInWords = require "./AmountInWords"  
@@ -34,5 +27,15 @@ CoffeeScript класс AmountInWords преобразует целое поло
 	console.log total.toText()  
 	# выведет на экран  
 	девятьсот девяносто девять тысяч тридцать пять  
+
+
+### Запуск тестов
+ 
+	git clone https://github.com/app/apptools.git  
+	cd apptools/amount-in-words.coffee/  
+	npm install  
+	make test 
+
+
 
 Удачи!
