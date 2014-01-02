@@ -16,13 +16,13 @@
 
 
 
-amountInWords = require "./amountInWords"
+AmountInWords = require "./AmountInWords"
 
 
 # helper function
 
 checkWith = (amount, text) ->
-  total = new amountInWords amount
+  total = new AmountInWords amount
   describe 'Amount in words', ->
     describe 'for #{amount}', ->
       it 'should return #{text}', ->

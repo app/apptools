@@ -38,7 +38,7 @@ unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ""
 
 
 #### Класс для хранения значения, преобразуемого в текст 
-module.exports = class amountInWords
+module.exports = class AmountInWords
     constructor: (@amount) ->
 
     @degree = 0
