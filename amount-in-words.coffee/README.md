@@ -12,7 +12,7 @@ CoffeeScript класс AmountInWords преобразует целое поло
 	# Получите код apptools  
 	git clone https://github.com/app/apptools.git  
 	# Скопируйте файл AmountInWords.coffee в свой проект  
-	cp -r apptools/amount-in-words.coffee/AmountInWords.coffee <PATH-TO-YOU-PROJECT/>  
+	cp apptools/amount-in-words.coffee/AmountInWords.coffee <PATH-TO-YOU-PROJECT/>  
 
 
 ### Пример использования
