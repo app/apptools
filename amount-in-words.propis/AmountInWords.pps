@@ -1,0 +1,49 @@
+# Класс для преобразования числа в пропись 
+
+# This file is part of apptools.
+# Copyright (C) 2012-2014 Andrey Paskal.
+
+# apptools is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the
+# Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# apptools is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Вспомогательные функции для работы со строками
+
+вКонсоль = console.log
+
+если typeof String.prototype.оканчиваетсяНа != 'function'
+    String.prototype.оканчиваетсяНа = ( строка ) ->
+        возврат этот.substring( этот.length - строка.length, этот.length ) == строка
+        
+если typeof String.prototype.справа != 'function'  
+    String.prototype.справа = ( числоСимволов ) ->
+        возврат "" если числоСимволов <= 0
+        возврат этот если числоСимволов >= этот.length
+        возврат этот.substring( этот.length - числоСимволов, этот.length )
+
+если typeof String.prototype.слева != 'function'
+    String.prototype.слева = ( числоСимволов ) ->
+        возврат "" если числоСимволов <= 0
+        возврат этот если числоСимволов >= этот.length
+        возврат этот.substring( 0, числоСимволов )
+
+еслине String::обрезать то String::обрезать = -> @replace /^\s+|\s+$/g, ""
+
+# Класс для хранения значения, преобразуемого в текст 
+module.exports = класс AmountInWords
+    constructor: (@число) ->
+
+    @степень = 0
+    @числоПрописью = ""
+
+
