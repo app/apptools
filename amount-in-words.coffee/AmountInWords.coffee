@@ -24,17 +24,17 @@ if typeof String.prototype.endsWith != 'function'
 
 if typeof String.prototype.right != 'function'
     String.prototype.right = ( subLen ) ->
-        return "" if subLen <= 0
+        return '' if subLen <= 0
         return this if subLen >= this.length
         return this.substring this.length - subLen, this.length 
   
 if typeof String.prototype.left != 'function'
     String.prototype.left = ( subLen ) ->
-        return "" if subLen <= 0
+        return '' if subLen <= 0
         return this if subLen >= this.length
         return this.substring 0, subLen 
 
-unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ""
+unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ''
 
 
 #### Класс для хранения значения, преобразуемого в текст 
@@ -42,7 +42,7 @@ module.exports = class AmountInWords
     constructor: (@amount) ->
 
     @degree = 0
-    @amountInWords = ""
+    @amountInWords = ''
 
     singleToText: (string, isFemale) ->
         return "undefinded" unless /^[0-9]$/.test string
@@ -133,32 +133,32 @@ module.exports = class AmountInWords
 
     degreeText: ( string ) ->
 
-        return "" if  @degree < 1 or @degree > 4
+        return '' if  @degree < 1 or @degree > 4
 
         if @degree == 1
             return " тысяча" if string.endsWith "одна"
-            return " тысячи" if string.endsWith("две") || string.endsWith("три") || string.endsWith("четыре")
+            return " тысячи" if string.endsWith "две" || string.endsWith "три" || string.endsWith "четыре"
             return " тысяч"
 
         if @degree == 2
             return " миллион" if string.endsWith "один"
-            return " миллиона" if string.endsWith("два") || string.endsWith("три") || string.endsWith("четыре")
+            return " миллиона" if string.endsWith "два" || string.endsWith "три" || string.endsWith "четыре"
             return " миллионов"
 
         if @degree == 3
             return " миллиард" if string.endsWith "один"
-            return " миллиарда" if string.endsWith("два") || string.endsWith("три") || string.endsWith("четыре")
+            return " миллиарда" if string.endsWith "два" || string.endsWith "три" || string.endsWith "четыре"
             return " миллиардов"
 
         if @degree == 4
             return " триллион" if string.endsWith "один"
-            return " триллиона" if string.endsWith("два") || string.endsWith("три") || string.endsWith("четыре")
+            return " триллиона" if string.endsWith "два" || string.endsWith "три" || string.endsWith "четыре"
             return " триллионов"
 
     toText:  ->
-        string = @amount + ""
+        string = @amount + ''
         @degree = 0
-        @amountInWords = ""
+        @amountInWords = ''
 
         # отрезаем по три цифры с конца и делаем их преобразование
         while string.length >= 3 
@@ -172,7 +172,7 @@ module.exports = class AmountInWords
                 coupleSingleText = @singleToText string, @degree == 1
             
             degreeText = @degreeText coupleSingleText
-            if @amountInWords != "" && (coupleSingleText + degreeText) != ""
+            if @amountInWords != '' && (coupleSingleText + degreeText) != ''
                 @amountInWords =  coupleSingleText + degreeText + " " + @amountInWords
             else
                 @amountInWords =  coupleSingleText + degreeText + @amountInWords
@@ -185,4 +185,4 @@ module.exports = class AmountInWords
             tripleText = @tripleToText string.right 3
             @amountInWords = tripleText + @degreeText( tripleText ) + " "+ @amountInWords 
         @degree++
-        string.left( string.length - 3);
+        string.left( string.length - 3 )
