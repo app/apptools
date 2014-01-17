@@ -26,13 +26,13 @@ if typeof String.prototype.right != 'function'
     String.prototype.right = ( subLen ) ->
         return "" if subLen <= 0
         return this if subLen >= this.length
-        return this.substring( this.length - subLen, this.length )
+        return this.substring this.length - subLen, this.length 
   
 if typeof String.prototype.left != 'function'
     String.prototype.left = ( subLen ) ->
         return "" if subLen <= 0
         return this if subLen >= this.length
-        return this.substring( 0, subLen )
+        return this.substring 0, subLen 
 
 unless String::trim then String::trim = -> @replace /^\s+|\s+$/g, ""
 
@@ -111,8 +111,8 @@ module.exports = class AmountInWords
     tripleToText: ( string ) ->
         return "undefinded" unless /^[0-9][0-9][0-9]$/.test string
 
-        leftDigit = string.substring(0,1)
-        rightCouple = string.substring(1,3)
+        leftDigit = string.substring 0, 1
+        rightCouple = string.substring 1, 3
 
         if string - 0 < 100
             return @coupleToText rightCouple
